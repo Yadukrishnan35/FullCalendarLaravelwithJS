@@ -10,7 +10,7 @@ class calendarController extends Controller
     public function index(Request $request) {
         if($request->ajax()) {
             $data = crudEvents::whereDate('event_start','>=',$request->start)
-            ->whereDate('event_end',$request->end)
+            ->whereDate('event_end','<=',$request->end)
             ->get(['id','event_name','event_start','event_end']);
             return response()->json($data);
         }
